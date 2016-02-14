@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       <context:annotation-config/>
+       <context:component-scan base-package="com.zviyazyvannya">
+              <context:include-filter type="assignable"
+                                      expression="com.zviyazyvannya.Instrument"/>
+       </context:component-scan>
+
+
+
+<bean id ="provider" class="com.nedvigimost.HelloWorldMessageProvider"/>
+
+       <bean id="renderer" class="com.nedvigimost.StandardOutMessageRenderer">
+              <property name="messageProvider" >
+                     <ref bean="provider"/>
+              </property>
+       </bean>
+
+       <bean id="duke" class="com.zviyazyvannya.Juggler">
+              <constructor-arg value="15"/>
+       </bean>
+
+       <bean id="poeticDuke" class="com.zviyazyvannya.PoeticJuggler" autowire="constructor">
+              <constructor-arg value = "15"/>
+       </bean>
+
+       <bean id = "stage" class="com.zviyazyvannya.Stage" factory-method="getInstance"/>
+
+
+       <bean id ="kenny" class="com.zviyazyvannya.Instrumentalist"
+             p:song = "Jingle Bells">
+       </bean>
+
+
+       <bean id ="shevchenko" class="com.zviyazyvannya.Shevchenko"/>
+
+       <bean id = "hank" class="com.zviyazyvannya.OneManBand">
+              <property name="instruments">
+                     <list>
+                            <ref bean="saxophone"/>
+                            <ref bean="piano"/>
+                     </list>
+              </property>
+       </bean>
+
+       <bean id = "hank2" class="com.zviyazyvannya.OneManBandNew">
+              <property name="instruments">
+                     <map>
+                            <entry key="SAXOPHONE" value-ref="saxophone"/>
+                            <entry key="PIANINO" value-ref="piano"/>
+                     </map>
+              </property>
+       </bean>
+
+
+
+
+
+
+</beans>
