@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception{
         ApplicationContext ctx = new ClassPathXmlApplicationContext("SpringBean.xml");
-        Performer p = ctx.getBean("kenny", Performer.class);
-        p.perform();
+        //Performer p = ctx.getBean("kenny", Performer.class);
+        //p.perform();
     }
 }
