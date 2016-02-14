@@ -2,7 +2,9 @@ package com.nedvigimost.vo;
 
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Created by Алексей on 14.02.2016.
@@ -11,8 +13,9 @@ import javax.validation.constraints.NotNull;
 public class Photo {
     private int id;
     @NotNull
+    @Size(min=1, max=255)
     private String path;
-    @NotNull
+    @Min(0)
     private int idBuilding;
 
     public Photo() {}
