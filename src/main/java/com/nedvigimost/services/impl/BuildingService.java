@@ -2,12 +2,14 @@ package com.nedvigimost.services.impl;
 
 import com.nedvigimost.services.interfaces.BuildingServiceInterface;
 import com.nedvigimost.vo.Building;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
  * Created by Alexis on 20.03.2016.
  */
+@Transactional
 public class BuildingService implements BuildingServiceInterface {
     @Override
     public Building getById(int id) {

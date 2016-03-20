@@ -2,14 +2,16 @@ package com.nedvigimost.vo;
 
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- * Created by Алексей on 14.02.2016.
+ * Created by пїЅпїЅпїЅпїЅпїЅпїЅпїЅ on 14.02.2016.
  */
+@Entity
 @Component
 public class User {
     private int idUser;

@@ -3,12 +3,14 @@ package com.nedvigimost.services.impl;
 import com.nedvigimost.services.interfaces.OrderServiceInterface;
 import com.nedvigimost.vo.Building;
 import com.nedvigimost.vo.Order;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
  * Created by Alexis on 20.03.2016.
  */
+@Transactional
 public class OrderService implements OrderServiceInterface {
     @Override
     public Order getById(int id) {

@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
        <context:annotation-config/>
        <context:component-scan base-package="com.nedvigimost.vo"/>
@@ -32,6 +33,23 @@
               </property>
        </bean>
 
+       <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
+       <bean id= "transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+              <property name="sessionFactory">
+                     <ref bean="sessionFactory"/>
+              </property>
+       </bean>
+
+       <tx:annotation-driven/>
+
+       <bean id="buildingService" class="com.nedvigimost.services.impl.BuildingService"/>
+       <bean id="orderService" class="com.nedvigimost.services.impl.OrderService"/>
+       <bean id="personService" class="com.nedvigimost.services.impl.PersonService"/>
+       <bean id="photoService" class="com.nedvigimost.services.impl.PhotoService"/>
+       <bean id="statisticsService" class="com.nedvigimost.services.impl.StatisticsService"/>
+       <bean id="userService" class="com.nedvigimost.services.impl.UserService"/>
+       <bean id="waitingHistoryService" class="com.nedvigimost.services.impl.WaitingHistoryService"/>
 
 
 

@@ -2,12 +2,14 @@ package com.nedvigimost.services.impl;
 
 import com.nedvigimost.services.interfaces.PersonServiceInterface;
 import com.nedvigimost.vo.Person;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
  * Created by Alexis on 20.03.2016.
  */
+@Transactional
 public class PersonService implements PersonServiceInterface{
     @Override
     public Person getById(int id) {

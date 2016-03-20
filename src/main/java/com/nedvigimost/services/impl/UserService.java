@@ -2,12 +2,14 @@ package com.nedvigimost.services.impl;
 
 import com.nedvigimost.services.interfaces.UserServiceInterface;
 import com.nedvigimost.vo.User;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
  * Created by Alexis on 20.03.2016.
  */
+@Transactional
 public class UserService implements UserServiceInterface {
     @Override
     public User getById(int id) {

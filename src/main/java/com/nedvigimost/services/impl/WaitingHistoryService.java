@@ -2,13 +2,15 @@ package com.nedvigimost.services.impl;
 
 import com.nedvigimost.services.interfaces.WaitingHistoryServiceInterface;
 import com.nedvigimost.vo.Building;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
  * Created by Alexis on 20.03.2016.
  */
-public class WaitingHistory implements WaitingHistoryServiceInterface {
+@Transactional
+public class WaitingHistoryService implements WaitingHistoryServiceInterface {
     @Override
     public com.nedvigimost.vo.WaitingHistory getById(int id) {
         return null;
