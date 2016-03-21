@@ -16,14 +16,9 @@
               <property name="maxTotal" value="10" />
        </bean>
 
-       <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-              <constructor-arg ref="dataSource"/>
-       </bean>
-
        <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
               <property name="dataSource" ref="dataSource" />
-              <property name="packagesToScan"
-                        value="com.nedvigimost.vo"/>
+              <property name="packagesToScan" value="com.nedvigimost.vo"/>
               <property name="hibernateProperties">
                      <props>
                             <prop key="dialect">org.hibernate.dialect.MySQLDialect</prop>
@@ -42,6 +37,15 @@
        </bean>
 
        <tx:annotation-driven/>
+
+       <bean id="buildingDao" class="com.nedvigimost.dao.impl.HibernateBuildingDAO"/>
+       <bean id="orderDAO" class="com.nedvigimost.dao.impl.HibernateOrderDAO"/>
+       <bean id="personDAO" class="com.nedvigimost.dao.impl.HibernatePersonDAO"/>
+       <bean id="photoDAO" class="com.nedvigimost.dao.impl.HibernatePhotoDAO"/>
+       <bean id="statisticsDAO" class="com.nedvigimost.dao.impl.HibernateStatisticsDAO"/>
+       <bean id="userDAO" class="com.nedvigimost.dao.impl.HibernateUserDAO"/>
+       <bean id="waitingHistoryDAO" class="com.nedvigimost.dao.impl.HibernateWaitingHistoryDAO"/>
+
 
        <bean id="buildingService" class="com.nedvigimost.services.impl.BuildingService"/>
        <bean id="orderService" class="com.nedvigimost.services.impl.OrderService"/>

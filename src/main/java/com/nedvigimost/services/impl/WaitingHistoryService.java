@@ -1,7 +1,11 @@
 package com.nedvigimost.services.impl;
 
+import com.nedvigimost.dao.interfaces.IBuildingDAO;
+import com.nedvigimost.dao.interfaces.IWaitingHistoryDAO;
 import com.nedvigimost.services.interfaces.WaitingHistoryServiceInterface;
 import com.nedvigimost.vo.Building;
+import com.nedvigimost.vo.WaitingHistory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -11,28 +15,26 @@ import java.util.List;
  */
 @Transactional
 public class WaitingHistoryService implements WaitingHistoryServiceInterface {
-    @Override
-    public com.nedvigimost.vo.WaitingHistory getById(int id) {
+    @Autowired
+    private IWaitingHistoryDAO waitingHistoryDAO;
+
+    public WaitingHistory getById(int id) {
         return null;
     }
 
-    @Override
-    public com.nedvigimost.vo.WaitingHistory addWaitingHistory(com.nedvigimost.vo.WaitingHistory waitingHistory) {
+    public WaitingHistory addWaitingHistory(WaitingHistory waitingHistory) {
         return null;
     }
 
-    @Override
-    public void editWaitingHistory(com.nedvigimost.vo.WaitingHistory waitingHistory) {
+    public void editWaitingHistory(WaitingHistory waitingHistory) {
 
     }
 
-    @Override
-    public void removeWaitingHistory(com.nedvigimost.vo.WaitingHistory waitingHistory) {
+    public void removeWaitingHistory(WaitingHistory waitingHistory) {
 
     }
 
-    @Override
-    public List<com.nedvigimost.vo.WaitingHistory> getWaitingHistoryForBuilding(Building building) {
+    public List<WaitingHistory> getWaitingHistoryForBuilding(Building building) {
         return null;
     }
 }

@@ -2,7 +2,7 @@ package com.nedvigimost.vo;
 
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -13,19 +13,28 @@ import java.util.Calendar;
  */
 @Entity
 @Component
+@Table(name="histories")
 public class WaitingHistory {
+    @Id
+    @GeneratedValue
     private int idHistory;
+
     @Min(0)
+    @NotNull
     private int idBuilding;
 
     @NotNull
     @Past
+    @Column(name="start_date")
     private Calendar startDate;
     @Past
+    @Column(name="end_date")
     private Calendar endDate;
     @Min(0)
+    @Column(name="price_for_selling")
     private int priceForSelling;
     @Min(0)
+    @Column(name="price_for_renting")
     private int priceForRenting;
 
     public WaitingHistory() {}

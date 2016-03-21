@@ -1,7 +1,10 @@
 package com.nedvigimost.services.impl;
 
+import com.nedvigimost.dao.interfaces.IBuildingDAO;
+import com.nedvigimost.dao.interfaces.IPersonDAO;
 import com.nedvigimost.services.interfaces.PersonServiceInterface;
 import com.nedvigimost.vo.Person;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -11,27 +14,25 @@ import java.util.List;
  */
 @Transactional
 public class PersonService implements PersonServiceInterface{
-    @Override
+    @Autowired
+    private IPersonDAO personDAO;
+
     public Person getById(int id) {
         return null;
     }
 
-    @Override
     public Person addPerson(Person person) {
         return null;
     }
 
-    @Override
     public void editPerson(Person person) {
 
     }
 
-    @Override
     public void removePerson(Person person) {
 
     }
 
-    @Override
     public List<Person> getAllPeople() {
         return null;
     }

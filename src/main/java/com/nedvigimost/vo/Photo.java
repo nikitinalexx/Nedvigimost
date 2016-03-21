@@ -2,7 +2,7 @@ package com.nedvigimost.vo;
 
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -12,27 +12,34 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Component
+@Table(name="photos")
 public class Photo {
-    private int id;
+    @Id
+    @GeneratedValue
+    private int idPhoto;
+
+    @Min(0)
+    @NotNull
+    private Building building;
+
     @NotNull
     @Size(min=1, max=255)
+    @Column(name="path")
     private String path;
-    @Min(0)
-    private int idBuilding;
 
     public Photo() {}
 
-    public Photo(String path, int idBuilding) {
+    public Photo(String path, Building building) {
         this.path = path;
-        this.idBuilding = idBuilding;
+        this.building = building;
     }
 
-    public int getIdBuilding() {
-        return idBuilding;
+    public Building getBuilding() {
+        return building;
     }
 
-    public void setIdBuilding(int idBuilding) {
-        this.idBuilding = idBuilding;
+    public void setBuilding(Building building) {
+        this.building = building;
     }
 
     public String getPath() {
@@ -43,11 +50,11 @@ public class Photo {
         this.path = path;
     }
 
-    public int getId() {
-        return id;
+    public int getIdPhoto() {
+        return idPhoto;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdPhoto(int idPhoto) {
+        this.idPhoto = idPhoto;
     }
 }

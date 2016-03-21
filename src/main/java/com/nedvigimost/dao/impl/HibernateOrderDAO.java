@@ -1,16 +1,21 @@
 package com.nedvigimost.dao.impl;
 
-import com.nedvigimost.dao.interfaces.IWaitingHistoryDAO;
+import com.nedvigimost.dao.interfaces.IOrderDAO;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 /**
  * Created by Alexis on 20.03.2016.
  */
 @Repository
-public class WaitingHistoryDAO implements IWaitingHistoryDAO {
+public class HibernateOrderDAO implements IOrderDAO{
     @Autowired
     private SessionFactory sessionFactory;
 
+    private Session currentSession() {
+        return sessionFactory.getCurrentSession();
+    }
 }

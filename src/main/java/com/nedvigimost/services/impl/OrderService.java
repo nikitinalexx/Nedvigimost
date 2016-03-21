@@ -1,8 +1,11 @@
 package com.nedvigimost.services.impl;
 
+import com.nedvigimost.dao.interfaces.IBuildingDAO;
+import com.nedvigimost.dao.interfaces.IOrderDAO;
 import com.nedvigimost.services.interfaces.OrderServiceInterface;
 import com.nedvigimost.vo.Building;
 import com.nedvigimost.vo.Order;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -12,27 +15,25 @@ import java.util.List;
  */
 @Transactional
 public class OrderService implements OrderServiceInterface {
-    @Override
+    @Autowired
+    private IOrderDAO orderDAO;
+
     public Order getById(int id) {
         return null;
     }
 
-    @Override
     public Order addOrder(Order order) {
         return null;
     }
 
-    @Override
     public void editOrder(Order order) {
 
     }
 
-    @Override
     public void removeOrder(Order order) {
 
     }
 
-    @Override
     public List<Order> getBuildingOrders(Building building) {
         return null;
     }

@@ -1,7 +1,9 @@
 package com.nedvigimost.services.impl;
 
+import com.nedvigimost.dao.interfaces.IBuildingDAO;
 import com.nedvigimost.services.interfaces.BuildingServiceInterface;
 import com.nedvigimost.vo.Building;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -11,32 +13,29 @@ import java.util.List;
  */
 @Transactional
 public class BuildingService implements BuildingServiceInterface {
-    @Override
+    @Autowired
+    private IBuildingDAO buildingDAO;
+
     public Building getById(int id) {
         return null;
     }
 
-    @Override
     public Building addBuilding(Building building) {
         return null;
     }
 
-    @Override
     public void editBuilding(Building building) {
 
     }
 
-    @Override
     public void removeBuilding(Building building) {
 
     }
 
-    @Override
     public List<Building> getSoldOrRentedBuildings() {
         return null;
     }
 
-    @Override
     public List<Building> getBuildingsLike(Building building) {
         return null;
     }

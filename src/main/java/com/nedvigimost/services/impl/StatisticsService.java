@@ -1,6 +1,9 @@
 package com.nedvigimost.services.impl;
 
+import com.nedvigimost.dao.interfaces.IBuildingDAO;
+import com.nedvigimost.dao.interfaces.IStatisticsDAO;
 import com.nedvigimost.services.interfaces.StatisticsServiceInterface;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -8,4 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 public class StatisticsService implements StatisticsServiceInterface {
+    @Autowired
+    private IStatisticsDAO statisticsDAO;
 }

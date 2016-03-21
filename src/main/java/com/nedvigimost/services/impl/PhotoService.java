@@ -1,7 +1,10 @@
 package com.nedvigimost.services.impl;
 
+import com.nedvigimost.dao.interfaces.IBuildingDAO;
+import com.nedvigimost.dao.interfaces.IPhotoDAO;
 import com.nedvigimost.services.interfaces.PhotoServiceInterface;
 import com.nedvigimost.vo.Photo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -9,22 +12,21 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Transactional
 public class PhotoService implements PhotoServiceInterface {
-    @Override
+    @Autowired
+    private IPhotoDAO photoDAO;
+
     public Photo getById(int id) {
         return null;
     }
 
-    @Override
     public Photo addPhoto(Photo photo) {
         return null;
     }
 
-    @Override
     public void editPhoto(Photo photo) {
 
     }
 
-    @Override
     public void removePhoto(Photo photo) {
 
     }

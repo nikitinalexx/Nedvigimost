@@ -2,7 +2,7 @@ package com.nedvigimost.vo;
 
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -11,19 +11,27 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Component
+@Table(name="people")
 public class Person {
+    @Id
+    @GeneratedValue
     private int idPerson;
+
     @NotNull
     @Size(min=1, max=255)
+    @Column(name="first_name")
     private String firstName;
     @NotNull
     @Size(min=1, max=255)
+    @Column(name="second_name")
     private String secondName;
     @NotNull
     @Size(min=1, max=255)
+    @Column(name="middle_name")
     private String middleName;
     @NotNull
     @Size(min=1, max=255)
+    @Column(name="phone_number")
     private String phoneNumber;
 
     public Person() {}

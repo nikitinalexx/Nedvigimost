@@ -1,7 +1,10 @@
 package com.nedvigimost.services.impl;
 
+import com.nedvigimost.dao.interfaces.IStatisticsDAO;
+import com.nedvigimost.dao.interfaces.IUserDAO;
 import com.nedvigimost.services.interfaces.UserServiceInterface;
 import com.nedvigimost.vo.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -11,27 +14,25 @@ import java.util.List;
  */
 @Transactional
 public class UserService implements UserServiceInterface {
-    @Override
+    @Autowired
+    private IUserDAO userDAO;
+
     public User getById(int id) {
         return null;
     }
 
-    @Override
     public User addUser(User user) {
         return null;
     }
 
-    @Override
     public void editUser(User user) {
 
     }
 
-    @Override
     public void removeUser(User user) {
 
     }
 
-    @Override
     public List<User> getAllUsers() {
         return null;
     }

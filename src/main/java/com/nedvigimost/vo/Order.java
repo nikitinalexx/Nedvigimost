@@ -2,9 +2,10 @@ package com.nedvigimost.vo;
 
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.util.Calendar;
 
@@ -13,54 +14,55 @@ import java.util.Calendar;
  */
 @Entity
 @Component
+@Table(name="orders")
 public class Order {
-
+    @Id
+    @GeneratedValue
     private int idOrder;
+
+    @NotNull
+    private Building building;
+    @NotNull
+    private Person owner;
+    @NotNull
+    private Person client;
+
     @Min(1) @Max(2)
+    @Column(name="type")
     private int type;  // 1 is for selling
     @Min(0)
-    private int idBuilding;
-    @Min(0)
-    private int idOwner;
-    @Min(0)
-    private int idClient;
-    @Min(0)
+    @Column(name="price")
     private int price;
-
+    @Past
+    @Column(name="start_date")
+    private Calendar startDate;
+    @Past
+    @Column(name="end_date")
+    private Calendar endDate;
 
     public Order() {
     }
 
-    public Order(int type, int idBuilding, int idOwner, int idClient, Calendar startDate, Calendar endDate, int price) {
+    public Order(int type, Building building, Person owner, Person client, Calendar startDate, Calendar endDate, int price) {
         this.type = type;
-        this.idBuilding = idBuilding;
-        this.idOwner = idOwner;
-        this.idClient = idClient;
+        this.building = building;
+        this.owner = owner;
+        this.client = client;
         this.startDate = startDate;
         this.endDate = endDate;
         this.price = price;
     }
 
-    @Past
-    private Calendar startDate;
-
-    public Order(int idOrder, int type, int idBuilding, int idOwner, int idClient, Calendar startDate, Calendar endDate, int price) {
+    public Order(int idOrder, int type, Building building, Person owner, Person client, Calendar startDate, Calendar endDate, int price) {
         this.idOrder = idOrder;
         this.type = type;
-        this.idBuilding = idBuilding;
-        this.idOwner = idOwner;
-        this.idClient = idClient;
+        this.building = building;
+        this.owner = owner;
+        this.client = client;
         this.startDate = startDate;
         this.endDate = endDate;
         this.price = price;
     }
-
-    @Past
-    private Calendar endDate;
-
-
-
-
 
     public int getPrice() {
         return price;
@@ -86,28 +88,28 @@ public class Order {
         this.type = type;
     }
 
-    public int getIdBuilding() {
-        return idBuilding;
+    public Building getBuilding() {
+        return building;
     }
 
-    public void setIdBuilding(int idBuilding) {
-        this.idBuilding = idBuilding;
+    public void setBuilding(Building building) {
+        this.building = building;
     }
 
-    public int getIdOwner() {
-        return idOwner;
+    public Person getOwner() {
+        return owner;
     }
 
-    public void setIdOwner(int idOwner) {
-        this.idOwner = idOwner;
+    public void setOwner(Person owner) {
+        this.owner = owner;
     }
 
-    public int getIdClient() {
-        return idClient;
+    public Person getClient() {
+        return client;
     }
 
-    public void setIdClient(int idClient) {
-        this.idClient = idClient;
+    public void setClient(Person client) {
+        this.client = client;
     }
 
     public Calendar getStartDate() {
