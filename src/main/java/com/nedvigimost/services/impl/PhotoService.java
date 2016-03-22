@@ -15,18 +15,18 @@ public class PhotoService implements IPhotoService {
     private IPhotoDAO photoDAO;
 
     public Photo getById(int id) {
-        return null;
+        return photoDAO.getPhotoById(id);
     }
 
-    public Photo addPhoto(Photo photo) {
-        return null;
+    public void addPhoto(Photo photo) {
+        photoDAO.addPhoto(photo);
     }
 
     public void editPhoto(Photo photo) {
-
+        photoDAO.savePhoto(photo);
     }
 
     public void removePhoto(Photo photo) {
-
+        photoDAO.removePhoto(photo);
     }
 }

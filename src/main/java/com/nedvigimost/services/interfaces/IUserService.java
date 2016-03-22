@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface IUserService {
     public User getById(int id);
-    public User addUser(User user);
+    public void addUser(User user);
     public void editUser(User user);
     public void removeUser(User user);
 

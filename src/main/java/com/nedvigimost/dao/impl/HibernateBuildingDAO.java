@@ -2,8 +2,10 @@ package com.nedvigimost.dao.impl;
 
 import com.nedvigimost.dao.interfaces.IBuildingDAO;
 import com.nedvigimost.vo.Building;
+import com.nedvigimost.vo.Person;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -18,5 +20,35 @@ public class HibernateBuildingDAO implements IBuildingDAO{
 
     private Session currentSession() {
         return sessionFactory.getCurrentSession();
+    }
+
+    @Override
+    public void addBuilding(Building building) {
+        Session session = currentSession();
+        Transaction tx = session.beginTransaction();
+        int id = (Integer) session.save(building);
+        building.setIdBuilding(id);
+        session.flush();
+    }
+
+    @Override
+    public Building getBuildingById(int id) {
+        return (Building) currentSession().get(Building.class, id);
+    }
+
+    @Override
+    public void saveBuilding(Building building) {
+        Session session = currentSession();
+        Transaction tx = session.beginTransaction();
+        session.update(building);
+        session.flush();
+    }
+
+    @Override
+    public void removeBuilding(Building building) {
+        Session session = currentSession();
+        Transaction tx = session.beginTransaction();
+        session.delete(building);
+        session.flush();
     }
 }

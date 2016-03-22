@@ -18,22 +18,22 @@ public class WaitingHistoryService implements IWaitingHistoryService {
     private IWaitingHistoryDAO waitingHistoryDAO;
 
     public WaitingHistory getById(int id) {
-        return null;
+        return waitingHistoryDAO.getWaitingHistoryById(id);
     }
 
-    public WaitingHistory addWaitingHistory(WaitingHistory waitingHistory) {
-        return null;
+    public void addWaitingHistory(WaitingHistory waitingHistory) {
+        waitingHistoryDAO.addWaitingHistory(waitingHistory);
     }
 
     public void editWaitingHistory(WaitingHistory waitingHistory) {
-
+        waitingHistoryDAO.saveWaitingHistory(waitingHistory);
     }
 
     public void removeWaitingHistory(WaitingHistory waitingHistory) {
-
+        waitingHistoryDAO.removeWaitingHistory(waitingHistory);
     }
 
     public List<WaitingHistory> getWaitingHistoryForBuilding(Building building) {
-        return null;
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

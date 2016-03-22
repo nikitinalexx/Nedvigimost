@@ -3,6 +3,8 @@ package com.nedvigimost.dao.impl;
 import com.nedvigimost.dao.interfaces.IStatisticsDAO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.stat.Statistics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -18,4 +20,5 @@ public class HibernateStatisticsDAO implements IStatisticsDAO{
     private Session currentSession() {
         return sessionFactory.getCurrentSession();
     }
+
 }

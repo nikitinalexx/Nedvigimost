@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface IOrderService {
     public Order getById(int id);
-    public Order addOrder(Order order);
+    public void addOrder(Order order);
     public void editOrder(Order order);
     public void removeOrder(Order order);
 

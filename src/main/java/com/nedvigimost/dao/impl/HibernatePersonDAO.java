@@ -21,14 +21,12 @@ public class HibernatePersonDAO implements IPersonDAO{
         return sessionFactory.getCurrentSession();
     }
 
-    public Person addPerson(Person person) {
-        System.out.println("Adding person");
+    public void addPerson(Person person) {
         Session session = currentSession();
         Transaction tx = session.beginTransaction();
         int id = (Integer) session.save(person);
         person.setIdPerson(id);
         session.flush();
-        return person;
     }
 
     public Person getPersonById(int id) {
@@ -37,7 +35,15 @@ public class HibernatePersonDAO implements IPersonDAO{
 
     public void savePerson(Person person) {
         Session session = currentSession();
+        Transaction tx = session.beginTransaction();
         session.update(person);
+        session.flush();
+    }
+
+    public void removePerson(Person person) {
+        Session session = currentSession();
+        Transaction tx = session.beginTransaction();
+        session.delete(person);
         session.flush();
     }
 }

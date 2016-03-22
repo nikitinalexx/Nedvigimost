@@ -17,22 +17,22 @@ public class PersonService implements IPersonService {
     private IPersonDAO personDAO;
 
     public Person getById(int id) {
-        return null;
+        return personDAO.getPersonById(id);
     }
 
-    public Person addPerson(Person person) {
-        return personDAO.addPerson(person);
+    public void addPerson(Person person) {
+        personDAO.addPerson(person);
     }
 
     public void editPerson(Person person) {
-
+        personDAO.savePerson(person);
     }
 
     public void removePerson(Person person) {
-
+        personDAO.removePerson(person);
     }
 
     public List<Person> getAllPeople() {
-        return null;
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

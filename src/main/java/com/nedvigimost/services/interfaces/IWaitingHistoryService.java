@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface IWaitingHistoryService {
     public WaitingHistory getById(int id);
-    public WaitingHistory addWaitingHistory(WaitingHistory waitingHistory);
+    public void addWaitingHistory(WaitingHistory waitingHistory);
     public void editWaitingHistory(WaitingHistory waitingHistory);
     public void removeWaitingHistory(WaitingHistory waitingHistory);
 

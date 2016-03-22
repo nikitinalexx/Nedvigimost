@@ -22,8 +22,7 @@ public class Person {
     @GeneratedValue
     private int idPerson;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="owner")
-    @Cascade(value = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy="owner", cascade = javax.persistence.CascadeType.ALL)
     private List<Building> buildings;
 
     @NotNull

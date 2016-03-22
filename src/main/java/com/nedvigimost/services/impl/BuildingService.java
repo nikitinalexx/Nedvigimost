@@ -17,26 +17,26 @@ public class BuildingService implements IBuildingService {
     private IBuildingDAO buildingDAO;
 
     public Building getById(int id) {
-        return null;
+        return buildingDAO.getBuildingById(id);
     }
 
-    public Building addBuilding(Building building) {
-        return null;
+    public void addBuilding(Building building) {
+        buildingDAO.addBuilding(building);
     }
 
     public void editBuilding(Building building) {
-
+        buildingDAO.saveBuilding(building);
     }
 
     public void removeBuilding(Building building) {
-
+        buildingDAO.removeBuilding(building);
     }
 
     public List<Building> getSoldOrRentedBuildings() {
-        return null;
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 
     public List<Building> getBuildingsLike(Building building) {
-        return null;
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

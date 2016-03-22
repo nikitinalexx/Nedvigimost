@@ -17,22 +17,22 @@ public class UserService implements IUserService {
     private IUserDAO userDAO;
 
     public User getById(int id) {
-        return null;
+        return userDAO.getUserById(id);
     }
 
-    public User addUser(User user) {
-        return null;
+    public void addUser(User user) {
+        userDAO.addUser(user);
     }
 
     public void editUser(User user) {
-
+        userDAO.saveUser(user);
     }
 
     public void removeUser(User user) {
-
+        userDAO.removeUser(user);
     }
 
     public List<User> getAllUsers() {
-        return null;
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

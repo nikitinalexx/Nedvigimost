@@ -18,22 +18,22 @@ public class OrderService implements IOrderService {
     private IOrderDAO orderDAO;
 
     public Order getById(int id) {
-        return null;
+        return orderDAO.getOrderById(id);
     }
 
-    public Order addOrder(Order order) {
-        return null;
+    public void addOrder(Order order) {
+        orderDAO.addOrder(order);
     }
 
     public void editOrder(Order order) {
-
+        orderDAO.saveOrder(order);
     }
 
     public void removeOrder(Order order) {
-
+        orderDAO.removeOrder(order);
     }
 
     public List<Order> getBuildingOrders(Building building) {
-        return null;
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

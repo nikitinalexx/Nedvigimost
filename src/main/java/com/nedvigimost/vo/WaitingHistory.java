@@ -17,7 +17,7 @@ import java.util.Calendar;
 public class WaitingHistory {
     @Id
     @GeneratedValue
-    private int idHistory;
+    private int idWaitingHistory;
 
     @NotNull
     @OneToOne
@@ -48,12 +48,12 @@ public class WaitingHistory {
         this.priceForRenting = priceForRenting;
     }
 
-    public int getIdHistory() {
-        return idHistory;
+    public int getIdWaitingHistory() {
+        return idWaitingHistory;
     }
 
-    public void setIdHistory(int idHistory) {
-        this.idHistory = idHistory;
+    public void setIdWaitingHistory(int idWaitingHistory) {
+        this.idWaitingHistory = idWaitingHistory;
     }
 
     public Building getBuilding() {
@@ -103,7 +103,7 @@ public class WaitingHistory {
 
         WaitingHistory that = (WaitingHistory) o;
 
-        if (idHistory != that.idHistory) return false;
+        if (idWaitingHistory != that.idWaitingHistory) return false;
         if (priceForRenting != that.priceForRenting) return false;
         if (priceForSelling != that.priceForSelling) return false;
         if (!building.equals(that.building)) return false;
@@ -115,7 +115,7 @@ public class WaitingHistory {
 
     @Override
     public int hashCode() {
-        int result = idHistory;
+        int result = idWaitingHistory;
         result = 31 * result + building.hashCode();
         result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
         result = 31 * result + (endDate != null ? endDate.hashCode() : 0);

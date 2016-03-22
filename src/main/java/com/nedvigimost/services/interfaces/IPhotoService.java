@@ -7,7 +7,7 @@ import com.nedvigimost.vo.Photo;
  */
 public interface IPhotoService {
     public Photo getById(int id);
-    public Photo addPhoto(Photo photo);
+    public void addPhoto(Photo photo);
     public void editPhoto(Photo photo);
     public void removePhoto(Photo photo);
 }
