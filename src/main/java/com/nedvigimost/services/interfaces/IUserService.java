@@ -5,9 +5,9 @@ import com.nedvigimost.vo.User;
 import java.util.List;
 
 /**
- * Created by Алексей on 14.02.2016.
+ * Created by пїЅпїЅпїЅпїЅпїЅпїЅпїЅ on 14.02.2016.
  */
-public interface UserServiceInterface {
+public interface IUserService {
     public User getById(int id);
     public User addUser(User user);
     public void editUser(User user);

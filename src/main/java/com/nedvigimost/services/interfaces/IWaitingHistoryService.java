@@ -6,9 +6,9 @@ import com.nedvigimost.vo.WaitingHistory;
 import java.util.List;
 
 /**
- * Created by Алексей on 14.02.2016.
+ * Created by пїЅпїЅпїЅпїЅпїЅпїЅпїЅ on 14.02.2016.
  */
-public interface WaitingHistoryServiceInterface {
+public interface IWaitingHistoryService {
     public WaitingHistory getById(int id);
     public WaitingHistory addWaitingHistory(WaitingHistory waitingHistory);
     public void editWaitingHistory(WaitingHistory waitingHistory);

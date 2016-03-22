@@ -18,13 +18,14 @@ public class Photo {
     @GeneratedValue
     private int idPhoto;
 
-    @Min(0)
     @NotNull
+    @OneToOne
+    @JoinColumn(name = "building_id", nullable = false)
     private Building building;
 
     @NotNull
     @Size(min=1, max=255)
-    @Column(name="path")
+    @Column(name="path", nullable = false)
     private String path;
 
     public Photo() {}
@@ -56,5 +57,27 @@ public class Photo {
 
     public void setIdPhoto(int idPhoto) {
         this.idPhoto = idPhoto;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Photo)) return false;
+
+        Photo photo = (Photo) o;
+
+        if (idPhoto != photo.idPhoto) return false;
+        if (!building.equals(photo.building)) return false;
+        if (!path.equals(photo.path)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idPhoto;
+        result = 31 * result + building.hashCode();
+        result = 31 * result + path.hashCode();
+        return result;
     }
 }

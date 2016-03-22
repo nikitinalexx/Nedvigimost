@@ -22,36 +22,38 @@ public class Building {
     private int idBuilding;
 
     @NotNull
+    @ManyToOne
     private Person owner;
 
     @Min(1) @Max(2)
-    @Column(name="type")
+    @Column(name="type", nullable=false)
     private int type; // 1 is for selling
     @Min(1)
-    @Column(name="num_of_floors")
+    @Column(name="num_of_floors", nullable=false)
     private int numOfFloors;
     @Min(1)
-    @Column(name="num_of_rooms")
+    @Column(name="num_of_rooms", nullable=false)
     private int numOfRooms;
     @Min(1)
-    @Column(name="num_of_baths")
+    @Column(name="num_of_baths", nullable=false)
     private int numOfBaths;
     @Min(0)
-    @Column(name="living_area")
+    @Column(name="living_area", nullable=false)
     private double livingArea;
     @Min(0)
-    @Column(name="total_area")
+    @Column(name="total_area", nullable=false)
     private double totalArea;
     @Min(0)
-    @Column(name="court_area")
+    @Column(name="court_area", nullable=false)
     private double courtArea;
     @Min(0)
-    @Column(name="distance_to_metro")
+    @Column(name="distance_to_metro", nullable=false)
     private double distanceToMetro;
     @NotNull @Size(min=1, max=255)
-    @Column(name="address")
+    @Column(name="address", nullable=false)
     private String address;
-    @Column(name="animals_allowed")
+    @NotNull
+    @Column(name="animals_allowed", nullable=false)
     private Boolean animalsAllowed;
     @Column(name="notes")
     private String notes;
@@ -198,4 +200,51 @@ public class Building {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Building)) return false;
+
+        Building building = (Building) o;
+
+        if (Double.compare(building.courtArea, courtArea) != 0) return false;
+        if (Double.compare(building.distanceToMetro, distanceToMetro) != 0) return false;
+        if (idBuilding != building.idBuilding) return false;
+        if (Double.compare(building.livingArea, livingArea) != 0) return false;
+        if (numOfBaths != building.numOfBaths) return false;
+        if (numOfFloors != building.numOfFloors) return false;
+        if (numOfRooms != building.numOfRooms) return false;
+        if (Double.compare(building.totalArea, totalArea) != 0) return false;
+        if (type != building.type) return false;
+        if (!address.equals(building.address)) return false;
+        if (!animalsAllowed.equals(building.animalsAllowed)) return false;
+        if (notes != null ? !notes.equals(building.notes) : building.notes != null) return false;
+        if (!owner.equals(building.owner)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = idBuilding;
+        result = 31 * result + owner.hashCode();
+        result = 31 * result + type;
+        result = 31 * result + numOfFloors;
+        result = 31 * result + numOfRooms;
+        result = 31 * result + numOfBaths;
+        temp = Double.doubleToLongBits(livingArea);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(totalArea);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(courtArea);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(distanceToMetro);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + address.hashCode();
+        result = 31 * result + animalsAllowed.hashCode();
+        result = 31 * result + (notes != null ? notes.hashCode() : 0);
+        return result;
+    }
 }

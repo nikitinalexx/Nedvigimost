@@ -1,8 +1,7 @@
 package com.nedvigimost.services.impl;
 
-import com.nedvigimost.dao.interfaces.IBuildingDAO;
 import com.nedvigimost.dao.interfaces.IPhotoDAO;
-import com.nedvigimost.services.interfaces.PhotoServiceInterface;
+import com.nedvigimost.services.interfaces.IPhotoService;
 import com.nedvigimost.vo.Photo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Created by Alexis on 20.03.2016.
  */
 @Transactional
-public class PhotoService implements PhotoServiceInterface {
+public class PhotoService implements IPhotoService {
     @Autowired
     private IPhotoDAO photoDAO;
 

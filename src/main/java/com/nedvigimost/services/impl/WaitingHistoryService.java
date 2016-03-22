@@ -1,8 +1,7 @@
 package com.nedvigimost.services.impl;
 
-import com.nedvigimost.dao.interfaces.IBuildingDAO;
 import com.nedvigimost.dao.interfaces.IWaitingHistoryDAO;
-import com.nedvigimost.services.interfaces.WaitingHistoryServiceInterface;
+import com.nedvigimost.services.interfaces.IWaitingHistoryService;
 import com.nedvigimost.vo.Building;
 import com.nedvigimost.vo.WaitingHistory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import java.util.List;
  * Created by Alexis on 20.03.2016.
  */
 @Transactional
-public class WaitingHistoryService implements WaitingHistoryServiceInterface {
+public class WaitingHistoryService implements IWaitingHistoryService {
     @Autowired
     private IWaitingHistoryDAO waitingHistoryDAO;
 

@@ -21,19 +21,19 @@ public class User {
 
     @Min(1)
     @Max(2)
-    @Column(name="role")
+    @Column(name="role", nullable = false)
     private int role;
     @NotNull
     @Size(min=1, max=255)
-    @Column(name="first_name")
+    @Column(name="first_name", nullable = false)
     private String firstName;
     @NotNull
     @Size(min=1, max=255)
-    @Column(name="second_name")
+    @Column(name="second_name", nullable = false)
     private String secondName;
     @NotNull
     @Size(min=1, max=255)
-    @Column(name="middle_name")
+    @Column(name="middle_name", nullable = false)
     private String middleName;
 
     public User() {}
@@ -83,5 +83,31 @@ public class User {
 
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+
+        User user = (User) o;
+
+        if (idUser != user.idUser) return false;
+        if (role != user.role) return false;
+        if (!firstName.equals(user.firstName)) return false;
+        if (!middleName.equals(user.middleName)) return false;
+        if (!secondName.equals(user.secondName)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idUser;
+        result = 31 * result + role;
+        result = 31 * result + firstName.hashCode();
+        result = 31 * result + secondName.hashCode();
+        result = 31 * result + middleName.hashCode();
+        return result;
     }
 }

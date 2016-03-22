@@ -6,9 +6,9 @@ import com.nedvigimost.vo.Order;
 import java.util.List;
 
 /**
- * Created by Алексей on 14.02.2016.
+ * Created by пїЅпїЅпїЅпїЅпїЅпїЅпїЅ on 14.02.2016.
  */
-public interface OrderServiceInterface {
+public interface IOrderService {
     public Order getById(int id);
     public Order addOrder(Order order);
     public void editOrder(Order order);

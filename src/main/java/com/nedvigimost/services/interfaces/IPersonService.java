@@ -5,9 +5,9 @@ import com.nedvigimost.vo.Person;
 import java.util.List;
 
 /**
- * Created by Алексей on 14.02.2016.
+ * Created by пїЅпїЅпїЅпїЅпїЅпїЅпїЅ on 14.02.2016.
  */
-public interface PersonServiceInterface {
+public interface IPersonService {
     public Person getById(int id);
     public Person addPerson(Person person);
     public void editPerson(Person person);

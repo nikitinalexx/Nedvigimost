@@ -19,9 +19,10 @@ public class WaitingHistory {
     @GeneratedValue
     private int idHistory;
 
-    @Min(0)
     @NotNull
-    private int idBuilding;
+    @OneToOne
+    @JoinColumn(name = "building_id", nullable = false)
+    private Building building;
 
     @NotNull
     @Past
@@ -39,8 +40,8 @@ public class WaitingHistory {
 
     public WaitingHistory() {}
 
-    public WaitingHistory(int idBuilding, Calendar startDate, Calendar endDate, int priceForSelling, int priceForRenting) {
-        this.idBuilding = idBuilding;
+    public WaitingHistory(Building building, Calendar startDate, Calendar endDate, int priceForSelling, int priceForRenting) {
+        this.building = building;
         this.startDate = startDate;
         this.endDate = endDate;
         this.priceForSelling = priceForSelling;
@@ -55,12 +56,12 @@ public class WaitingHistory {
         this.idHistory = idHistory;
     }
 
-    public int getIdBuilding() {
-        return idBuilding;
+    public Building getBuilding() {
+        return building;
     }
 
-    public void setIdBuilding(int idBuilding) {
-        this.idBuilding = idBuilding;
+    public void setBuilding(Building building) {
+        this.building = building;
     }
 
     public Calendar getStartDate() {
@@ -93,5 +94,33 @@ public class WaitingHistory {
 
     public void setPriceForRenting(int priceForRenting) {
         this.priceForRenting = priceForRenting;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof WaitingHistory)) return false;
+
+        WaitingHistory that = (WaitingHistory) o;
+
+        if (idHistory != that.idHistory) return false;
+        if (priceForRenting != that.priceForRenting) return false;
+        if (priceForSelling != that.priceForSelling) return false;
+        if (!building.equals(that.building)) return false;
+        if (endDate != null ? !endDate.equals(that.endDate) : that.endDate != null) return false;
+        if (startDate != null ? !startDate.equals(that.startDate) : that.startDate != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = idHistory;
+        result = 31 * result + building.hashCode();
+        result = 31 * result + (startDate != null ? startDate.hashCode() : 0);
+        result = 31 * result + (endDate != null ? endDate.hashCode() : 0);
+        result = 31 * result + priceForSelling;
+        result = 31 * result + priceForRenting;
+        return result;
     }
 }

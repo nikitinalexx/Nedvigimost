@@ -5,9 +5,9 @@ import com.nedvigimost.vo.Building;
 import java.util.List;
 
 /**
- * Created by Алексей on 14.02.2016.
+ * Created by пїЅпїЅпїЅпїЅпїЅпїЅпїЅ on 14.02.2016.
  */
-public interface BuildingServiceInterface {
+public interface IBuildingService {
     public Building getById(int id);
     public Building addBuilding(Building building);
     public void editBuilding(Building building);

@@ -1,8 +1,7 @@
 package com.nedvigimost.services.impl;
 
-import com.nedvigimost.dao.interfaces.IBuildingDAO;
 import com.nedvigimost.dao.interfaces.IOrderDAO;
-import com.nedvigimost.services.interfaces.OrderServiceInterface;
+import com.nedvigimost.services.interfaces.IOrderService;
 import com.nedvigimost.vo.Building;
 import com.nedvigimost.vo.Order;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import java.util.List;
  * Created by Alexis on 20.03.2016.
  */
 @Transactional
-public class OrderService implements OrderServiceInterface {
+public class OrderService implements IOrderService {
     @Autowired
     private IOrderDAO orderDAO;
 

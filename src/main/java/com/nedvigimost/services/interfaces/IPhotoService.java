@@ -3,9 +3,9 @@ package com.nedvigimost.services.interfaces;
 import com.nedvigimost.vo.Photo;
 
 /**
- * Created by Алексей on 14.02.2016.
+ * Created by пїЅпїЅпїЅпїЅпїЅпїЅпїЅ on 14.02.2016.
  */
-public interface PhotoServiceInterface {
+public interface IPhotoService {
     public Photo getById(int id);
     public Photo addPhoto(Photo photo);
     public void editPhoto(Photo photo);
