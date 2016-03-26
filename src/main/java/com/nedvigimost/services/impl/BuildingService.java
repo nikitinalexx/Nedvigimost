@@ -33,10 +33,10 @@ public class BuildingService implements IBuildingService {
     }
 
     public List<Building> getSoldOrRentedBuildings() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return buildingDAO.getSoldOrRentedBuildings();
     }
 
-    public List<Building> getBuildingsLike(Building building) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public List<Building> getBuildingsLike(Building from, Building to) {
+        return buildingDAO.getBuildingsLike(from, to);
     }
 }

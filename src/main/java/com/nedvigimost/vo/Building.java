@@ -16,6 +16,24 @@ import javax.persistence.*;
 @Entity
 @Component
 @Table(name="buildings")
+@NamedQueries(
+        @NamedQuery(name = "getSoldOrRentedBuildings", query =
+                "select b\n" +
+                        "  from Building b\n" +
+                        " where b not in (select history.building\n" +
+                        "                   from WaitingHistory history\n" +
+                        "                  where history.endDate > :currentDate)\n" +
+                        "   and b not in (select o.building\n" +
+                        "                   from Order o\n" +
+                        "                  where type = 2\n" +
+                        "                    and o.endDate > :currentDate)\n" +
+                        "   and b in (select o.building from Order o where o.type = 1)\n" +
+                        "union\n" +
+                        "select o.building\n" +
+                        "  from Order o\n" +
+                        " where o.type = 2\n" +
+                        "   and o.endDate > :currentDate")
+)
 public class Building {
     @Id
     @GeneratedValue
@@ -25,9 +43,6 @@ public class Building {
     @ManyToOne
     private Person owner;
 
-    @Min(1) @Max(2)
-    @Column(name="type", nullable=false)
-    private int type; // 1 is for selling
     @Min(1)
     @Column(name="num_of_floors", nullable=false)
     private int numOfFloors;
@@ -62,10 +77,6 @@ public class Building {
 
     public void setIdBuilding(int idBuilding) {
         this.idBuilding = idBuilding;
-    }
-
-    public void setType(int type) {
-        this.type = type;
     }
 
     public void setNumOfFloors(int numOfFloors) {
@@ -116,8 +127,7 @@ public class Building {
     public Building() {
     }
 
-    public Building(int type, int numOfFloors, int numOfRooms, int numOfBuths, double livingArea, double totalArea, double courtArea, double distanceToMetro, String address, Boolean animalsAllowed, String notes, Person owner) {
-        this.type = type;
+    public Building(int numOfFloors, int numOfRooms, int numOfBaths, double livingArea, double totalArea, double courtArea, double distanceToMetro, String address, Boolean animalsAllowed, String notes, Person owner) {
         this.numOfFloors = numOfFloors;
         this.numOfRooms = numOfRooms;
         this.numOfBaths = numOfBaths;
@@ -131,9 +141,7 @@ public class Building {
         this.owner = owner;
     }
 
-    public Building(int idBuilding, int type, int numOfFloors, int numOfRooms, int numOfBaths, double livingArea, double totalArea, double courtArea, double distanceToMetro, String address, Boolean animalsAllowed, String notes, Person owner) {
-        this.idBuilding = idBuilding;
-        this.type = type;
+    public Building(int numOfFloors, int numOfRooms, int numOfBaths, double livingArea, double totalArea, double courtArea, double distanceToMetro, String address, Boolean animalsAllowed, String notes) {
         this.numOfFloors = numOfFloors;
         this.numOfRooms = numOfRooms;
         this.numOfBaths = numOfBaths;
@@ -144,15 +152,10 @@ public class Building {
         this.address = address;
         this.animalsAllowed = animalsAllowed;
         this.notes = notes;
-        this.owner = owner;
     }
 
     public int getIdBuilding() {
         return idBuilding;
-    }
-
-    public int getType() {
-        return type;
     }
 
     public int getNumOfFloors() {
@@ -215,7 +218,6 @@ public class Building {
         if (numOfFloors != building.numOfFloors) return false;
         if (numOfRooms != building.numOfRooms) return false;
         if (Double.compare(building.totalArea, totalArea) != 0) return false;
-        if (type != building.type) return false;
         if (!address.equals(building.address)) return false;
         if (!animalsAllowed.equals(building.animalsAllowed)) return false;
         if (notes != null ? !notes.equals(building.notes) : building.notes != null) return false;
@@ -230,7 +232,6 @@ public class Building {
         long temp;
         result = idBuilding;
         result = 31 * result + owner.hashCode();
-        result = 31 * result + type;
         result = 31 * result + numOfFloors;
         result = 31 * result + numOfRooms;
         result = 31 * result + numOfBaths;

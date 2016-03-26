@@ -1,11 +1,10 @@
 package com.nedvigimost.dao.impl;
 
-import com.nedvigimost.dao.interfaces.IPhotoDAO;
-import com.nedvigimost.vo.Person;
-import com.nedvigimost.vo.Photo;
+import com.nedvigimost.dao.interfaces.IStatisticsDAO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.stat.Statistics;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -19,23 +18,8 @@ import javax.persistence.PersistenceContext;
  */
 @Repository
 @Transactional
-public class HibernatePhotoDAO implements IPhotoDAO{
+public class JpaStatisticsDAO implements IStatisticsDAO{
     @PersistenceContext
     private EntityManager em;
 
-    public void addPhoto(Photo photo) {
-        em.persist(photo);
-    }
-
-    public Photo getPhotoById(int id) {
-        return em.find(Photo.class, id);
-    }
-
-    public void savePhoto(Photo photo) {
-        em.merge(photo);
-    }
-
-    public void removePhoto(Photo photo) {
-        em.remove(photo);
-    }
 }

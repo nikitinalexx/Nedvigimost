@@ -1,8 +1,8 @@
 package com.nedvigimost.dao.impl;
 
-import com.nedvigimost.dao.interfaces.IUserDAO;
+import com.nedvigimost.dao.interfaces.IPhotoDAO;
 import com.nedvigimost.vo.Person;
-import com.nedvigimost.vo.User;
+import com.nedvigimost.vo.Photo;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -19,23 +19,23 @@ import javax.persistence.PersistenceContext;
  */
 @Repository
 @Transactional
-public class HibernateUserDAO implements IUserDAO {
+public class JpaPhotoDAO implements IPhotoDAO{
     @PersistenceContext
     private EntityManager em;
 
-    public void addUser(User user) {
-        em.persist(user);
+    public void addPhoto(Photo photo) {
+        em.persist(photo);
     }
 
-    public User getUserById(int id) {
-        return em.find(User.class, id);
+    public Photo getPhotoById(int id) {
+        return em.find(Photo.class, id);
     }
 
-    public void saveUser(User user) {
-        em.merge(user);
+    public void savePhoto(Photo photo) {
+        em.merge(photo);
     }
 
-    public void removeUser(User user) {
-        em.remove(user);
+    public void removePhoto(Photo photo) {
+        em.remove(photo);
     }
 }
