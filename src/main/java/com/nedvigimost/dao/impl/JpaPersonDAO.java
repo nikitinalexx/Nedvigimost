@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  * Created by Alexis on 20.03.2016.
@@ -36,5 +37,9 @@ public class JpaPersonDAO implements IPersonDAO{
 
     public void removePerson(Person person) {
         em.remove(person);
+    }
+
+    public List<Person> getAllPeople() {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }

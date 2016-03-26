@@ -33,6 +33,6 @@ public class PersonService implements IPersonService {
     }
 
     public List<Person> getAllPeople() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return personDAO.getAllPeople();
     }
 }

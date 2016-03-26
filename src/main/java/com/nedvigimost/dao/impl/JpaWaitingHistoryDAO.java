@@ -1,6 +1,7 @@
 package com.nedvigimost.dao.impl;
 
 import com.nedvigimost.dao.interfaces.IWaitingHistoryDAO;
+import com.nedvigimost.vo.Building;
 import com.nedvigimost.vo.Person;
 import com.nedvigimost.vo.WaitingHistory;
 import org.hibernate.Session;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  * Created by Alexis on 20.03.2016.
@@ -36,5 +38,9 @@ public class JpaWaitingHistoryDAO implements IWaitingHistoryDAO {
 
     public void removeWaitingHistory(WaitingHistory waitingHistory) {
         em.remove(waitingHistory);
+    }
+
+    public List<WaitingHistory> getWaitingHistoryForBuilding(Building building) {
+        throw new UnsupportedOperationException("Not implemented yet");
     }
 }
