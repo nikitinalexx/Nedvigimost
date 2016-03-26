@@ -8,42 +8,33 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  * Created by Alexis on 20.03.2016.
  */
 @Repository
+@Transactional
 public class HibernatePersonDAO implements IPersonDAO{
-    @Autowired
-    private SessionFactory sessionFactory;
-
-    private Session currentSession() {
-        return sessionFactory.getCurrentSession();
-    }
+    @PersistenceContext
+    private EntityManager em;
 
     public void addPerson(Person person) {
-        Session session = currentSession();
-        Transaction tx = session.beginTransaction();
-        int id = (Integer) session.save(person);
-        person.setIdPerson(id);
-        session.flush();
+        em.persist(person);
     }
 
     public Person getPersonById(int id) {
-        return (Person) currentSession().get(Person.class, id);
+        return em.find(Person.class, id);
     }
 
     public void savePerson(Person person) {
-        Session session = currentSession();
-        Transaction tx = session.beginTransaction();
-        session.update(person);
-        session.flush();
+        em.merge(person);
     }
 
     public void removePerson(Person person) {
-        Session session = currentSession();
-        Transaction tx = session.beginTransaction();
-        session.delete(person);
-        session.flush();
+        em.remove(person);
     }
 }

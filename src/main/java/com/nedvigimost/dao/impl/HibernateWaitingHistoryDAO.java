@@ -8,46 +8,33 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  * Created by Alexis on 20.03.2016.
  */
 @Repository
+@Transactional
 public class HibernateWaitingHistoryDAO implements IWaitingHistoryDAO {
-    @Autowired
-    private SessionFactory sessionFactory;
+    @PersistenceContext
+    private EntityManager em;
 
-    private Session currentSession() {
-        return sessionFactory.getCurrentSession();
-    }
-
-    @Override
     public void addWaitingHistory(WaitingHistory waitingHistory) {
-        Session session = currentSession();
-        Transaction tx = session.beginTransaction();
-        int id = (Integer) session.save(waitingHistory);
-        waitingHistory.setIdWaitingHistory(id);
-        session.flush();
+        em.persist(waitingHistory);
     }
 
-    @Override
     public WaitingHistory getWaitingHistoryById(int id) {
-        return (WaitingHistory) currentSession().get(WaitingHistory.class, id);
+        return em.find(WaitingHistory.class, id);
     }
 
-    @Override
     public void saveWaitingHistory(WaitingHistory waitingHistory) {
-        Session session = currentSession();
-        Transaction tx = session.beginTransaction();
-        session.update(waitingHistory);
-        session.flush();
+        em.merge(waitingHistory);
     }
 
-    @Override
     public void removeWaitingHistory(WaitingHistory waitingHistory) {
-        Session session = currentSession();
-        Transaction tx = session.beginTransaction();
-        session.delete(waitingHistory);
-        session.flush();
+        em.remove(waitingHistory);
     }
 }

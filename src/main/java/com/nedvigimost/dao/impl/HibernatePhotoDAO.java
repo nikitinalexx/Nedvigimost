@@ -9,46 +9,33 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  * Created by Alexis on 20.03.2016.
  */
 @Repository
+@Transactional
 public class HibernatePhotoDAO implements IPhotoDAO{
-    @Autowired
-    private SessionFactory sessionFactory;
+    @PersistenceContext
+    private EntityManager em;
 
-    private Session currentSession() {
-        return sessionFactory.getCurrentSession();
-    }
-
-    @Override
     public void addPhoto(Photo photo) {
-        Session session = currentSession();
-        Transaction tx = session.beginTransaction();
-        int id = (Integer) session.save(photo);
-        photo.setIdPhoto(id);
-        session.flush();
+        em.persist(photo);
     }
 
-    @Override
     public Photo getPhotoById(int id) {
-        return (Photo) currentSession().get(Photo.class, id);
+        return em.find(Photo.class, id);
     }
 
-    @Override
     public void savePhoto(Photo photo) {
-        Session session = currentSession();
-        Transaction tx = session.beginTransaction();
-        session.update(photo);
-        session.flush();
+        em.merge(photo);
     }
 
-    @Override
     public void removePhoto(Photo photo) {
-        Session session = currentSession();
-        Transaction tx = session.beginTransaction();
-        session.delete(photo);
-        session.flush();
+        em.remove(photo);
     }
 }

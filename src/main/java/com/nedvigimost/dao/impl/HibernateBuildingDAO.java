@@ -10,42 +10,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  * Created by Alexis on 20.03.2016.
  */
 @Repository
+@Transactional
 public class HibernateBuildingDAO implements IBuildingDAO{
-     @Autowired
-     private SessionFactory sessionFactory;
-
-    private Session currentSession() {
-        return sessionFactory.getCurrentSession();
-    }
+    @PersistenceContext
+    private EntityManager em;
 
     public void addBuilding(Building building) {
-        Session session = currentSession();
-        Transaction tx = session.beginTransaction();
-        int id = (Integer) session.save(building);
-        building.setIdBuilding(id);
-        session.flush();
+        em.persist(building);
     }
 
     public Building getBuildingById(int id) {
-        return (Building) currentSession().get(Building.class, id);
+        return em.find(Building.class, id);
     }
 
     public void saveBuilding(Building building) {
-        Session session = currentSession();
-        Transaction tx = session.beginTransaction();
-        session.update(building);
-        session.flush();
+        em.merge(building);
     }
 
     public void removeBuilding(Building building) {
-        Session session = currentSession();
-        Transaction tx = session.beginTransaction();
-        session.delete(building);
-        session.flush();
+        em.remove(building);
     }
 }

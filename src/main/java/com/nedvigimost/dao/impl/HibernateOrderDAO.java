@@ -9,46 +9,33 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  * Created by Alexis on 20.03.2016.
  */
 @Repository
+@Transactional
 public class HibernateOrderDAO implements IOrderDAO{
-    @Autowired
-    private SessionFactory sessionFactory;
+    @PersistenceContext
+    private EntityManager em;
 
-    private Session currentSession() {
-        return sessionFactory.getCurrentSession();
-    }
-
-    @Override
     public void addOrder(Order order) {
-        Session session = currentSession();
-        Transaction tx = session.beginTransaction();
-        int id = (Integer) session.save(order);
-        order.setIdOrder(id);
-        session.flush();
+        em.persist(order);
     }
 
-    @Override
     public Order getOrderById(int id) {
-        return (Order) currentSession().get(Order.class, id);
+        return em.find(Order.class, id);
     }
 
-    @Override
     public void saveOrder(Order order) {
-        Session session = currentSession();
-        Transaction tx = session.beginTransaction();
-        session.update(order);
-        session.flush();
+        em.merge(order);
     }
 
-    @Override
     public void removeOrder(Order order) {
-        Session session = currentSession();
-        Transaction tx = session.beginTransaction();
-        session.delete(order);
-        session.flush();
+        em.remove(order);
     }
 }

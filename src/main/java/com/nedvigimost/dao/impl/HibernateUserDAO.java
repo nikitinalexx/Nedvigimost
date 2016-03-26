@@ -9,46 +9,33 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  * Created by Alexis on 20.03.2016.
  */
 @Repository
+@Transactional
 public class HibernateUserDAO implements IUserDAO {
-    @Autowired
-    private SessionFactory sessionFactory;
+    @PersistenceContext
+    private EntityManager em;
 
-    private Session currentSession() {
-        return sessionFactory.getCurrentSession();
-    }
-
-    @Override
     public void addUser(User user) {
-        Session session = currentSession();
-        Transaction tx = session.beginTransaction();
-        int id = (Integer) session.save(user);
-        user.setIdUser(id);
-        session.flush();
+        em.persist(user);
     }
 
-    @Override
     public User getUserById(int id) {
-        return (User) currentSession().get(User.class, id);
+        return em.find(User.class, id);
     }
 
-    @Override
     public void saveUser(User user) {
-        Session session = currentSession();
-        Transaction tx = session.beginTransaction();
-        session.update(user);
-        session.flush();
+        em.merge(user);
     }
 
-    @Override
     public void removeUser(User user) {
-        Session session = currentSession();
-        Transaction tx = session.beginTransaction();
-        session.delete(user);
-        session.flush();
+        em.remove(user);
     }
 }
