@@ -6,13 +6,13 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
        <context:annotation-config/>
-       <context:component-scan base-package="com.nedvigimost.vo"/>
+       <context:component-scan base-package="com.nedvigimost.*"/>
 
        <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
               <property name="driverClassName" value="com.mysql.jdbc.Driver" />
               <property name="url" value="jdbc:mysql://localhost:3306/nedvigimost" />
               <property name="username" value="root" />
-              <property name="password" value="1" />
+              <property name="password" value="root" />
               <property name="initialSize" value="5" />
               <property name="maxTotal" value="10" />
        </bean>
@@ -39,6 +39,7 @@
 
        <tx:annotation-driven transaction-manager="transactionManager"/>
 
+       <!--
        <bean id="buildingDao" class="com.nedvigimost.dao.impl.HibernateBuildingDAO"/>
        <bean id="orderDAO" class="com.nedvigimost.dao.impl.HibernateOrderDAO"/>
        <bean id="personDAO" class="com.nedvigimost.dao.impl.HibernatePersonDAO"/>
@@ -55,7 +56,7 @@
        <bean id="statisticsService" class="com.nedvigimost.services.impl.StatisticsService"/>
        <bean id="userService" class="com.nedvigimost.services.impl.UserService"/>
        <bean id="waitingHistoryService" class="com.nedvigimost.services.impl.WaitingHistoryService"/>
-
+-->
 
 
 
