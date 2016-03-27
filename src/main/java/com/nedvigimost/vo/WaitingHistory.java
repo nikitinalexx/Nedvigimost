@@ -14,6 +14,9 @@ import java.util.Calendar;
 @Entity
 @Component
 @Table(name="histories")
+@NamedQueries(
+        @NamedQuery(name = "getWaitingHistoryForBuilding", query = "select w from WaitingHistory w where w.building = ?")
+)
 public class WaitingHistory {
     @Id
     @GeneratedValue

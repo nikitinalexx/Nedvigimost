@@ -2,8 +2,10 @@ package com.nedvigimost.dao.interfaces;
 
 import com.nedvigimost.vo.Building;
 import com.nedvigimost.vo.Order;
+import com.nedvigimost.vo.Person;
 import com.nedvigimost.vo.WaitingHistory;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -15,5 +17,5 @@ public interface IOrderDAO {
     public void saveOrder(Order order);
     public void removeOrder(Order order);
     public List<Order> getBuildingOrders(Building building);
-    public Order processWaitingHistory(WaitingHistory waitingHistory);
+    public Order processWaitingHistory(WaitingHistory waitingHistory, Person client, Calendar startDate, Calendar endDate);
 }

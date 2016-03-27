@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -17,6 +19,9 @@ import java.util.List;
 @Entity
 @Component
 @Table(name="people")
+@NamedQueries(
+        @NamedQuery(name = "getAllPeople", query = "select p from Person p")
+)
 public class Person {
     @Id
     @GeneratedValue

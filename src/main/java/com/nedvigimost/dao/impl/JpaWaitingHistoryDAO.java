@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 /**
@@ -41,6 +42,8 @@ public class JpaWaitingHistoryDAO implements IWaitingHistoryDAO {
     }
 
     public List<WaitingHistory> getWaitingHistoryForBuilding(Building building) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        Query query = em.createNamedQuery("getWaitingHistoryForBuilding");
+        query.setParameter(1, building);
+        return query.getResultList();
     }
 }

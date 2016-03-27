@@ -4,10 +4,12 @@ import com.nedvigimost.dao.interfaces.IOrderDAO;
 import com.nedvigimost.services.interfaces.IOrderService;
 import com.nedvigimost.vo.Building;
 import com.nedvigimost.vo.Order;
+import com.nedvigimost.vo.Person;
 import com.nedvigimost.vo.WaitingHistory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -49,7 +51,7 @@ public class OrderService implements IOrderService {
      * @param waitingHistory
      * @return
      */
-    public Order processWaitingHistory(WaitingHistory waitingHistory) {
-        return orderDAO.processWaitingHistory(waitingHistory);
+    public Order processWaitingHistory(WaitingHistory waitingHistory, Person client, Calendar startDate, Calendar endDate) {
+        return orderDAO.processWaitingHistory(waitingHistory, client, startDate, endDate);
     }
 }

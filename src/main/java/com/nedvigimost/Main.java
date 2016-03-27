@@ -1,8 +1,7 @@
 package com.nedvigimost;
 
-import com.nedvigimost.services.interfaces.IBuildingService;
-import com.nedvigimost.services.interfaces.IPersonService;
-import com.nedvigimost.services.interfaces.IUserService;
+import com.nedvigimost.dao.interfaces.IWaitingHistoryDAO;
+import com.nedvigimost.services.interfaces.*;
 import com.nedvigimost.vo.Building;
 import com.nedvigimost.vo.Person;
 import com.nedvigimost.vo.User;
@@ -18,14 +17,12 @@ public class Main {
 
     public static void main(String[] args) throws Exception{
         ApplicationContext ctx = new ClassPathXmlApplicationContext("SpringBean.xml");
-        //Performer p = ctx.getBean("kenny", Performer.class);
-        //p.perform();
         IBuildingService buildingService = ctx.getBean("buildingService", IBuildingService.class);
-        IUserService userService = ctx.getBean("userService", IUserService.class);
-        List<User> users = userService.getAllUsers();
-        for (User u : users) {
-            System.out.println("Found user " + u);
+        Building b = buildingService.getById(1);
+        if (b != null) {
+            IWaitingHistoryService waitingHistoryService = ctx.getBean("waitingHistoryService", IWaitingHistoryService.class);
+            waitingHistoryService.getWaitingHistoryForBuilding(b);
+            System.out.println("Found");
         }
-
     }
 }

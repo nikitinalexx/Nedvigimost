@@ -15,6 +15,9 @@ import java.util.Calendar;
 @Entity
 @Component
 @Table(name="orders")
+@NamedQueries(
+        @NamedQuery(name = "getBuildingOrders", query = "select o from Order o where o.building = ?")
+)
 public class Order {
     @Id
     @GeneratedValue
@@ -50,17 +53,6 @@ public class Order {
     }
 
     public Order(int type, Building building, Person owner, Person client, Calendar startDate, Calendar endDate, int price) {
-        this.type = type;
-        this.building = building;
-        this.owner = owner;
-        this.client = client;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.price = price;
-    }
-
-    public Order(int idOrder, int type, Building building, Person owner, Person client, Calendar startDate, Calendar endDate, int price) {
-        this.idOrder = idOrder;
         this.type = type;
         this.building = building;
         this.owner = owner;
