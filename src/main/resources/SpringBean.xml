@@ -11,12 +11,27 @@
        <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
               <property name="driverClassName" value="com.mysql.jdbc.Driver" />
               <property name="url" value="jdbc:mysql://localhost:3306/nedvigimost" />
-              <property name="username" value="root" />
-              <property name="password" value="root" />
+              <property name="username" value="alex" />
+              <property name="password" value="1" />
               <property name="initialSize" value="5" />
               <property name="maxTotal" value="10" />
        </bean>
 
+       <bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+              <property name="database" value="MYSQL" />
+              <property name="showSql" value="true"/>
+              <property name="generateDdl" value="false"/>
+              <property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" />
+       </bean>
+
+
+       <bean id="emf" class= "org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+              <property name="persistenceXmlLocation" value="persistence.xml" />
+              <property name="dataSource" ref="dataSource" />
+              <property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
+       </bean>
+
+       <!--
        <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
               <property name="dataSource" ref="dataSource" />
               <property name="packagesToScan" value="com.nedvigimost.vo"/>
@@ -28,13 +43,14 @@
                      </props>
               </property>
        </bean>
+       -->
 
        <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 
-       <bean id= "transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-              <property name="sessionFactory">
-                     <ref bean="sessionFactory"/>
-              </property>
+       <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+       <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+              <property name="entityManagerFactory" ref="emf" />
+              <property name="dataSource" ref="dataSource" />
        </bean>
 
        <tx:annotation-driven transaction-manager="transactionManager"/>
@@ -47,6 +63,7 @@
        <bean id="statisticsDAO" class="com.nedvigimost.dao.impl.HibernateStatisticsDAO"/>
        <bean id="userDAO" class="com.nedvigimost.dao.impl.HibernateUserDAO"/>
        <bean id="waitingHistoryDAO" class="com.nedvigimost.dao.impl.HibernateWaitingHistoryDAO"/>
+       -->
 
 
        <bean id="buildingService" class="com.nedvigimost.services.impl.BuildingService"/>
@@ -56,7 +73,6 @@
        <bean id="statisticsService" class="com.nedvigimost.services.impl.StatisticsService"/>
        <bean id="userService" class="com.nedvigimost.services.impl.UserService"/>
        <bean id="waitingHistoryService" class="com.nedvigimost.services.impl.WaitingHistoryService"/>
--->
 
 
 

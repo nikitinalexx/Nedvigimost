@@ -2,6 +2,8 @@ package com.nedvigimost.dao.interfaces;
 
 import com.nedvigimost.vo.Person;
 
+import java.util.List;
+
 /**
  * Created by Alexis on 20.03.2016.
  */
@@ -10,4 +12,5 @@ public interface IPersonDAO {
     public Person getPersonById(int id);
     public void savePerson(Person person);
     public void removePerson(Person person);
+    public List<Person> getAllPeople();
 }

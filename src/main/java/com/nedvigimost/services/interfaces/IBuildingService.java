@@ -14,5 +14,5 @@ public interface IBuildingService {
     public void removeBuilding(Building building);
 
     public List<Building> getSoldOrRentedBuildings();
-    public List<Building> getBuildingsLike(Building building);
+    public List<Building> getBuildingsLike(Building from, Building to);
 }

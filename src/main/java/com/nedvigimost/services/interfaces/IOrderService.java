@@ -2,7 +2,10 @@ package com.nedvigimost.services.interfaces;
 
 import com.nedvigimost.vo.Building;
 import com.nedvigimost.vo.Order;
+import com.nedvigimost.vo.Person;
+import com.nedvigimost.vo.WaitingHistory;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -13,6 +16,6 @@ public interface IOrderService {
     public void addOrder(Order order);
     public void editOrder(Order order);
     public void removeOrder(Order order);
-
     public List<Order> getBuildingOrders(Building building);
+    public Order processWaitingHistory(WaitingHistory waitingHistory, Person client, Calendar startDate, Calendar endDate);
 }

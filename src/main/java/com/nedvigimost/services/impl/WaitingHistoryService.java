@@ -34,6 +34,6 @@ public class WaitingHistoryService implements IWaitingHistoryService {
     }
 
     public List<WaitingHistory> getWaitingHistoryForBuilding(Building building) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return waitingHistoryDAO.getWaitingHistoryForBuilding(building);
     }
 }

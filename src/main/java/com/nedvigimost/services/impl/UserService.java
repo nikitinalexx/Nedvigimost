@@ -33,6 +33,6 @@ public class UserService implements IUserService {
     }
 
     public List<User> getAllUsers() {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return userDAO.getAllUsers();
     }
 }

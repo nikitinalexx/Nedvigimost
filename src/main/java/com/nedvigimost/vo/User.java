@@ -14,6 +14,9 @@ import javax.validation.constraints.Size;
 @Entity
 @Component
 @Table(name="users")
+@NamedQueries(
+        @NamedQuery(name = "getAllUsers", query = "select u from User u")
+)
 public class User {
     @Id
     @GeneratedValue

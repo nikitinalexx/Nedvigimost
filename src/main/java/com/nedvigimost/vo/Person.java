@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -17,12 +19,15 @@ import java.util.List;
 @Entity
 @Component
 @Table(name="people")
+@NamedQueries(
+        @NamedQuery(name = "getAllPeople", query = "select p from Person p")
+)
 public class Person {
     @Id
     @GeneratedValue
     private int idPerson;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy="owner", cascade = javax.persistence.CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy="owner", cascade = javax.persistence.CascadeType.ALL, orphanRemoval = true)
     private List<Building> buildings;
 
     @NotNull
