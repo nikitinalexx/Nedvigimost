@@ -5,7 +5,7 @@ import com.nedvigimost.vo.Order;
 
 /**
  * Created by Alexis on 20.03.2016.
- */
+*/
 public interface IOrderDAO {
     public void addOrder(Order order);
     public Order getOrderById(int id);
