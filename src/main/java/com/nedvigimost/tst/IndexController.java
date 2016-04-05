@@ -6,13 +6,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class IndexController {
-    @RequestMapping(value = "/")
+
+    @RequestMapping(value = "/index")
     public ModelAndView index() {
         ModelAndView mav = new ModelAndView();
 
         String msg = "Running IndexController.index() method";
 
+        System.out.print("sdfsdf sdfsd f sdf sd");
+
         mav.addObject("msg", msg);
         return mav;
     }
+
 }
