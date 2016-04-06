@@ -3,10 +3,10 @@
 <html lang="en" ng-app="NgApp">
 <head>
     <title>Authorization | Agenstvo</title>
-    <jsp:include page="../head.jsp"/>
+    <jsp:include page="head.jsp"/>
 </head>
 <body>
-<jsp:include page="../navigation.jsp"/>
+<jsp:include page="navigation.jsp"/>
 
 <div class="container">
     <div class="col-sm-6">
@@ -27,6 +27,6 @@
     </div>
 </div>
 
-<jsp:include page="../footer.jsp"/>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

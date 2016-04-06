@@ -2,23 +2,23 @@
   Created by IntelliJ IDEA.
   User: Bohdan
   Date: 26.03.16
-  Time: 16:37
+  Time: 16:41
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en" ng-app="NgApp">
 <head>
-    <title>Create user | Agenstvo</title>
-    <jsp:include page="../head.jsp"/>
+    <title>Edit user | Agenstvo</title>
+    <jsp:include page="head.jsp"/>
 </head>
 <body>
-<jsp:include page="../navigation.jsp"/>
+<jsp:include page="navigation.jsp"/>
 
 <div class="container">
     <div class="col-sm-6">
         <div class="jumbotron">
-            <h2>Створення користувача</h2>
+            <h2>Редагування користувача</h2>
             <form>
                 <div class="form-group">
                     <label for="email">Email</label>
@@ -62,6 +62,6 @@
     </div>
 </div> <!-- /container -->
 
-<jsp:include page="../footer.jsp"/>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>

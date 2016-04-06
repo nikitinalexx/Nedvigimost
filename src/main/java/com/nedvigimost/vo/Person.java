@@ -26,19 +26,19 @@ public class Person {
     private List<Building> buildings;
 
     @NotNull
-    @Size(min=1, max=255)
+    @Size(min=1, max=30)
     @Column(name="first_name", nullable = false)
     private String firstName;
     @NotNull
-    @Size(min=1, max=255)
+    @Size(min=1, max=30)
     @Column(name="second_name", nullable = false)
     private String secondName;
     @NotNull
-    @Size(min=1, max=255)
+    @Size(min=1, max=30)
     @Column(name="middle_name", nullable = false)
     private String middleName;
     @NotNull
-    @Size(min=1, max=255)
+    @Size(min=1, max=12)
     @Column(name="phone_number", nullable = false)
     private String phoneNumber;
 
