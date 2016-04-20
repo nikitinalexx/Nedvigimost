@@ -10,15 +10,15 @@
 <html lang="en" ng-app="NgApp">
 <head>
     <title>Create user | Agenstvo</title>
-    <jsp:include page="../head.jsp"/>
+    <jsp:include page="head.jsp"/>
 </head>
 <body>
-<jsp:include page="../navigation.jsp"/>
+<jsp:include page="navigation.jsp"/>
 
 <div class="container">
     <div class="col-sm-6">
         <div class="jumbotron">
-            <h2>Додавання будинку</h2>
+            <h2>Редагування будинку</h2>
             <form>
                 <div class="form-group">
                     <label for="idBuilding">Тип будівлі</label><br/>
@@ -135,7 +135,6 @@
     </div>
 </div> <!-- /container -->
 
-<jsp:include page="../footer.jsp"/>
+<jsp:include page="footer.jsp"/>
 </body>
 </html>
-
