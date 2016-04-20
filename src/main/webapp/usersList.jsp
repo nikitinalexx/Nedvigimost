@@ -9,22 +9,31 @@
 <jsp:include page="navigation.jsp"/>
 
 <div class="container">
-    <div class="col-sm-6">
-        <div class="jumbotron">
-            <h1>Вхід</h1>
-            <form>
-                <div class="form-group">
-                    <label for="email">Email address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Email">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Пароль">
-                </div>
-                <button type="submit" class="btn btn-default">Увійти</button>
-            </form>
-        </div>
-    </div>
+    <h2>Користувачі</h2>
+    <jsp:useBean id="allUsers" type="java.util.ArrayList" scope="session" />
+    <table class="table table-condensed">
+        <thead>
+        <tr>
+            <th>Ім'я</th>
+            <th>Прізвище</th>
+            <td>Логін</td>
+            <td>Тип</td>
+            <td>Редагувати</td>
+        </tr>
+        </thead>
+        <tbody>
+        <% for(int i = 0; i < allUsers.size(); i+=1) { %>
+        <tr>
+            <td>${allUsers.get(i).getName()}</td>
+            <td>${allUsers.get(i).getSurName()}</td>
+            <td>${allUsers.get(i).getLogin()}</td>
+            <td>${allUsers.get(i).getType()}</td>
+            <td>${allUsers.get(i).getEditButton()}</td>
+        </tr>
+        <% } %>
+        </tbody>
+    </table>
+
 </div>
 
 <jsp:include page="footer.jsp"/>

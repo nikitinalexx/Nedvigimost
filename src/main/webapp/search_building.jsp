@@ -122,6 +122,30 @@
                                 <br /><button type="submit" class="btn btn-default">Пошук</button>
             </form>
         </div>
+
+        <br /><br />
+        <br />
+
+        <h2>Результати пошуку</h2>
+        <p>Результати пошуку посортовані від найбільш схожого до найменш схожих</p>
+        <jsp:useBean id="allSearched" type="java.util.ArrayList" scope="session" />
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th>Адреса</th>
+                <th>Деталі</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for(int i = 0; i < allSearched.size(); i+=1) { %>
+            <tr>
+                <td>${allSearched.get(i).getAddress()}</td>
+                <td>${allSearched.get(i).getDetailButton()}</td>
+            </tr>
+            <% } %>
+            </tbody>
+        </table>
+
     </div>
 
 

@@ -13,14 +13,14 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Головна</a></li>
+                <li><a href="#">Головна</a></li>
                 <li><a href="search_building.jsp">Пошук</a></li>
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Додати <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="add_building.jsp">Будинок</a></li>
-                        <li><a href="add_user.jsp">Користувача системи</a></li>
+                        <li class="active"><a href="add_user.jsp">Користувача системи</a></li>
                     </ul>
                 </li>
 
